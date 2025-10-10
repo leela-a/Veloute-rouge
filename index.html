@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Velouté Rouge</title>
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&famiily=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+	<!-- My CSS -->
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<!-- CONTENT -->
+	<header class="site-header">
+  		<!-- <a href="cart.html" class="cart-icon">
+    		🛒 <span id="cart-count">0</span>
+  		</a> -->
+		
+
+		<nav class="topnav">
+			<a class="brand" href="index.html">Velouté Rouge</a>
+
+			<ul class="navlinks">
+				<li><a href="index.html">Home</a></li>
+
+				<!-- Dropdown -->
+				<li class="dropdown">
+					<button class="dropbtn" aria-haspopup="true" aria-expanded="false">
+						Menu
+							<span class="caret">▾</span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+					  <li><a href="menu.html#cakes">Cakes</a></li>
+					  <li><a href="menu.html#cupcakes">Cupcakes</a></li>
+					  <li><a href="menu.html#cookies">Cookies</a></li>
+					  <li><a href="menu.html#more">More</a></li>
+					</ul>
+				</li>
+
+				<li><a href="menu.html">All Menu</a></li>
+				
+				<li><a href="mailto:velouterouge.bakery@gmail.com">Contact Us</a></li>
+				<li>
+				  <a href="https://instagram.com/veloute.rouge" target="_blank" aria-label="Instagram">
+					<i class="fab fa-instagram"></i>
+				  </a>
+				</li>
+				
+			</ul>
+
+			<a href="cart.html" class="cart-icon">
+			  🛒 <span id="cart-count">0</span>
+			</a>
+		</nav>
+	</header>
+
+	<section class="hero">
+		<h1>Velouté Rouge</h1>
+		<p>For hearts that crave the softest sweets.</p>
+		<a href="menu.html" class="btn">View Menu</a>
+	</section>
+	
+	<main>
+		<!-- About -->
+		<section id="about" class="about">
+			<div class="container">
+				<img src= "images/baker.jpg" alt="Baker at work">
+				<div class="text">
+					<h2>Our Story</h2>
+					<p>Born from a velvet dream...</p>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Menu -->
+		
+		<section class="menu">
+			<h2 class="menu-title">Featured Treats</h2>
+			<div class="products">
+				<!-- copy 3–6 of your favorite items -->
+				<article class="product">
+					<img src="images/cakes/Red velvet cake slice.jpg" alt="Red velvet cake slice">
+					<h4 class="product-name">Red velvet cake slice</h4>
+					<div class="divider"></div>
+					<div class="product-price">$2.30</div>
+					<button class="add-to-cart"
+							data-name="Red velvet cake slice"
+							data-price="2.30">Add to Cart</button>
+				</article>
+				
+				<article class="product">
+					<img src="images/cakes/chocolate cake slice.jpg" alt="Chocolate cake slice">
+					<h4 class="product-name">Chocolate cake slice</h4>
+					<div class="divider"></div>
+					<div class="product-price">$2.30</div>
+					<button class="add-to-cart"
+							data-name="Chocolate cake slice"
+							data-price="2.30">Add to Cart</button>
+				</article>
+				
+				<article class="product">
+					<img src="images/cakes/oreo white cake.jpg" alt="Oreo white cake">
+					<h4 class="product-name">Oreo white cake</h4>
+					<div class="divider"></div>
+					<div class="product-price">$2.30</div>
+					<button class="add-to-cart"
+							data-name="Oreo white cake"
+							data-price="2.30">Add to Cart</button>
+				</article>
+				
+    <!-- …more featured items… -->
+	
+				<article
+				  class="product configurable"
+				  data-name="Red Velvet Cupcake"
+				  data-price-1="1.50"
+				  data-price-6="4.00"
+				  data-price-12="10.00"
+				>
+				  <img src="images/cupcakes/red velvet cupcake.jpg" alt="Red Velvet Cupcake">
+				  <h4 class="product-name">Red Velvet Cupcake</h4>
+				  <div class="divider"></div>
+				  <div class="product-price">From $1.50</div>
+				  <button type="button" class="configure-btn">Select Options</button>
+				</article>
+						
+				<article
+				  class="product configurable"
+				  data-name="Red Velvet Cookies"
+				  data-price-1="1.05"
+				  data-price-6="6.50"
+				  data-price-12="12.60"
+				>
+				  <img src="images/cookies/six red velvet cookies.jpeg" alt="Red Velvet Cookies">
+				  <h4 class="product-name">Red Velvet Cookies</h4>
+				  <div class="divider"></div>
+				  <div class="product-price">From $1.05</div>
+				  <button type="button" class="configure-btn">Select Options</button>
+				</article>
+				
+				<article
+				  class="product configurable"
+				  data-name="Chocolate Chip Cookies"
+				  data-price-1="1.05"
+				  data-price-6="6.50"
+				  data-price-12="12.60"
+				>
+				  <img src="images/cookies/chocolate chip cookies.jpg" alt="Chocolate chip cookies">
+				  <h4 class="product-name">Chocolate Chip Cookies</h4>
+				  <div class="divider"></div>
+				  <div class="product-price">From $1.05</div>
+				  <button type="button" class="configure-btn">Select Options</button>
+				</article>
+				
+				<article class="product">
+					<img src="images/cookies/shortbread cookies.jpg" alt="Shortbread cookies">
+					<h4 class="product-name">Shortbread cookies</h4>
+					<div class="divider"></div>
+					<div class="product-price">$5.00</div>
+					<button class="add-to-cart"
+								data-name="Shortbread cookies"
+								data-price="5.00">Add to Cart</button>
+				</article>
+
+				<article
+				  class="product configurable"
+				  data-name="Raspberry White Chocolate Scones"
+				  data-price-1="1.10"
+				  data-price-6="6.30"
+				  data-price-12="12.00"
+				>
+				  <img src="images/more/raspberry white chocolate scones.jpg" alt="Raspberry White Chocolate Scones">
+				  <h4 class="product-name">Raspberry White Chocolate Scones</h4>
+				  <div class="divider"></div>
+				  <div class="product-price">From $1.10</div>
+				  <button type="button" class="configure-btn">Select Options</button>
+				</article>
+				
+				<article
+				  class="product configurable"
+				  data-name="Egg roll"
+				  data-price-1="1.10"
+				  data-price-6="6.30"
+				  data-price-12="12.00"
+				>
+				  <img src="images/more/egg roll.webp" alt="Egg roll">
+				  <h4 class="product-name">Egg roll</h4>
+				  <div class="divider"></div>
+				  <div class="product-price">From $1.10</div>
+				  <button type="button" class="configure-btn">Select Options</button>
+				</article>  
+	
+			</div>
+		</section>
+		
+
+		<!-- Contact -->
+		<section id="contact" class="contact">
+			<h2>Contact Us</h2>
+			<form>
+				<input type="email" placeholder="Your email">
+				<button type="submit">Join Our Velvet Club</button>
+			</form>
+		</section>
+	</main>
+	
+
+		<!-- Product Options Modal -->
+		<div id="product-modal" class="cart-modal" aria-hidden="true">
+		  <div class="cart-window" role="dialog" aria-modal="true" aria-labelledby="pm-name">
+			<button id="pm-close" class="cart-close" aria-label="Close">&times;</button>
+
+			<h3 id="pm-name" style="margin-top:0;"></h3>
+
+			<div class="pm-row" style="margin-top:0.75rem;">
+			  <label for="pm-variant">Quantity *</label>
+			  <select id="pm-variant">
+				<option value="1">Single</option>
+				<option value="6">Half-dozen (6)</option>
+				<option value="12">Dozen (12)</option>
+			  </select>
+			</div>
+
+			<div class="pm-row" style="margin-top:0.75rem;">
+			  <label>Quantity *</label>
+			  <div class="cart-qty" style="justify-content:flex-start;">
+				<button id="pm-dec">–</button>
+				<span id="pm-qty">1</span>
+				<button id="pm-inc">+</button>
+			  </div>
+			</div>
+
+			<p style="margin-top:0.75rem;">
+			  Price: $<span id="pm-price">0.00</span>
+			</p>
+
+			<button id="pm-add" class="add-to-cart">Add to Cart</button>
+		  </div>
+		</div>
+		
+<script src="main.js"></script>
+</body>
+</html>		
