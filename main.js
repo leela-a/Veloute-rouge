@@ -217,3 +217,24 @@ addToCart = function(name, price, qty = 1) {
   saveCart();
 };
 
+// --- MOBILE DROPDOWN FIX ---
+document.addEventListener('DOMContentLoaded', () => {
+  const menuButton = document.querySelector('.dropbtn');
+  const dropdown = document.querySelector('.dropdown');
+  const menu = document.querySelector('.dropdown-menu');
+
+  if (window.innerWidth <= 768 && menuButton && dropdown && menu) {
+    menuButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  }
+});
+
+
