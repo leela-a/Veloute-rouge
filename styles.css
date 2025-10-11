@@ -572,3 +572,59 @@ body { padding-top: 5.5rem; }
   opacity: 0.7;
 }
 
+/* 🏡 Featured Treats Grid - Home page only */
+.home-featured .products {
+  display: grid;
+  gap: 1.25rem;
+  justify-content: center; /* center leftover cards */
+}
+
+/* Fixed number of columns on desktop */
+.home-featured .products.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.home-featured .products.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.home-featured .products.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.home-featured .products.grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* Responsive collapse */
+@media (max-width: 1200px) {
+  .home-featured .products.grid-4, 
+  .home-featured .products.grid-5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .home-featured .products.grid-3, 
+  .home-featured .products.grid-4, 
+  .home-featured .products.grid-5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .home-featured .products.grid-2,
+  .home-featured .products.grid-3,
+  .home-featured .products.grid-4,
+  .home-featured .products.grid-5 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Equal card heights for clean rows */
+.product {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+.product .add-to-cart,
+.product .select-options {
+  margin-top: auto;
+}
+
+
