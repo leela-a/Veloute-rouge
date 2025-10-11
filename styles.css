@@ -560,6 +560,13 @@ body { padding-top: 5.5rem; } /* Keep content pushed below fixed header */
   opacity: 0.7;
 }
 
+/* Limit Featured Treats width on the home page */
+.home-featured {
+  max-width: 1200px;      /* pick your favorite width: 1100–1280px works well */
+  margin: 0 auto;         /* center it */
+  padding: 0 1rem;        /* a little side breathing room */
+}
+
 /* 🏡 Featured Treats Grid - Home page only */
 .home-featured .products {
   display: grid;
@@ -646,5 +653,6 @@ body { padding-top: 5.5rem; } /* Keep content pushed below fixed header */
   .site-header { padding: .6rem .8rem; }
   body { padding-top: 4.5rem; } /* keep content below header */
 }
+
 
 
