@@ -232,11 +232,35 @@
 			<button id="pm-add" class="add-to-cart">Add to Cart</button>
 		  </div>
 		</div>
-		
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdown = document.querySelector('.dropdown');
+  const button = document.querySelector('.dropbtn');
+  const menu = document.querySelector('.dropdown-menu');
+
+  if (button && menu) {
+    button.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // prevent double-tap zoom
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close menu if tapping elsewhere
+    document.addEventListener('touchstart', (e) => {
+      if (!dropdown.contains(e.target)) {
+        menu.style.display = 'none';
+      }
+    });
+  }
+});
+</script>
+	
+	
 <script src="main.js"></script>
 </body>
 
 </html>		
+
 
 
 
