@@ -392,7 +392,15 @@ body {
   padding: 0.5rem 0.9rem;
   color: var(--primary-burgundy);
 }
-.dropdown.open .dropdown-menu { display: block; }
+.dropdown.open .dropdown-menu { 
+	display: block;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 9999; /* 👈 ensures it shows above everything else */
+	visibility: visible;
+	opacity: 1;
+}
 
 .menu-title {
   font-family: var(--font-body);  /* 'Playfair Display', serif */
@@ -669,4 +677,5 @@ body { padding-top: 5.5rem; } /* Keep content pushed below fixed header */
   background: #000;         /* black background on hover */
   color: #fff;             /* white text on hover */
 }
+
 
