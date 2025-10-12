@@ -1,3 +1,5 @@
+console.log("✅ main.js loaded");
+
 // --- cart logic ---
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -98,6 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".dropbtn");
+  console.log("Dropdown button found:", !!btn);
+});
+
+
 // Show only the category indicated by the URL hash on menu.html
 function showCategoryFromHash() {
   const cat = (location.hash || '').replace('#','').trim(); // e.g. "cookies"
@@ -216,6 +225,7 @@ addToCart = function(name, price, qty = 1) {
   }
   saveCart();
 };
+
 
 
 
