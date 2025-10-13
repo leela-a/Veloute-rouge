@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout – Velouté Rouge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <a href="cart.html" class="back-link">× Back</a>
+
+  <main class="checkout-page">
+    <div class="checkout-box">
+      <h2>Checkout</h2>
+      <p>Total: $<span id="checkout-total">0.00</span></p>
+      <p>Please send your total via e-transfer to <strong>velouterouge.bakery@gmail.com</strong>.</p>
+
+      <form id="checkout-form">
+        <input type="text" id="first" placeholder="First Name" required>
+        <input type="text" id="last" placeholder="Last Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+        <button type="submit" class="btn">Place Your Order</button>
+      </form>
+
+      <p id="confirmation" class="confirmation">
+        Thank you for your order! Please check your email for confirmation.
+      </p>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("0HT2vcmHhZdfLgtMU");
+    })();
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+    document.getElementById("checkout-total").textContent = total.toFixed(2);
+
+    document.getElementById("checkout-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const first = document.getElementById("first").value;
+      const last = document.getElementById("last").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const order_id = Math.floor(Math.random() * 1000000);
+
+      const orders = cart.map(item => ({
+        name: item.name,
+        units: item.qty,
+        price: (item.price * item.qty).toFixed(2)
+      }));
+
+      const cost = { tax: "0.00", total: total.toFixed(2) };
+
+      const templateParams = {
+        email: email,
+        order_id: order_id,
+        orders: orders,
+        cost: cost
+      };
+
+      emailjs.send("service_vy9gnoy", "template_a34zt0a", templateParams)
+        .then(() => {
+          document.getElementById("confirmation").style.display = "block";
+          localStorage.removeItem("cart");
+        })
+        .catch(err => {
+          console.error("EmailJS error:", err);
+          alert("There was a problem sending your confirmation email.");
+        });
+    });
+  </script>
+</body>
+</html>
