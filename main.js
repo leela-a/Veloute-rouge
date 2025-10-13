@@ -216,4 +216,3 @@ addToCart = function(name, price, qty = 1) {
   }
   saveCart();
 };
-
