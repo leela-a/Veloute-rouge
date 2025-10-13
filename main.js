@@ -82,8 +82,22 @@ function renderCartPage() {
 
   document.getElementById('cart-total').textContent = total.toFixed(2);
 }
-
-
+// simple dropdown toggle (works on click; good for touch devices)
+document.addEventListener('DOMContentLoaded', () => {
+  const dd = document.querySelector('.dropdown');
+  if (dd) {
+    const btn = dd.querySelector('.dropbtn');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', () => {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+});
 // Show only the category indicated by the URL hash on menu.html
 function showCategoryFromHash() {
   const cat = (location.hash || '').replace('#','').trim(); // e.g. "cookies"
@@ -202,9 +216,4 @@ addToCart = function(name, price, qty = 1) {
   }
   saveCart();
 };
-
-
-
-
-
 
