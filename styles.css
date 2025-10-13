@@ -214,7 +214,7 @@ body {
   font-size: 0.9rem;
   vertical-align: top;
 }
-
+body { padding-top: 3.5rem; /* push content below fixed header */ }
 .cart {
   max-width: 600px;
   margin: 2rem auto;
@@ -222,7 +222,13 @@ body {
   background: var(--soft-blush);
   border-radius: 0.5rem;
 }
-
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+}
 .cart-row .remove {
   background: none;
   border: none;
@@ -234,24 +240,27 @@ body {
 	color: var(--primary-burgundy);
 	font-family: var(--font-heading);
 }
-
+.cart-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 .cart-qty button {
   background: rgba(255, 255, 255, 0.2);
-  border: 1px solid #000;
+  border: 1px solid var(--white);
   padding: 0 0.5rem;
   cursor: pointer;
   font-size: 1rem;
   border-radius: 0.25rem;
-  color: #000;
+  color: var(--white);
 }
 .cart-qty button:hover {
   background:    rgba(255,255,255,0.3);
-
 }
 .cart-qty span {
   min-width: 1.5em;
   text-align: center;
-  color: #000;	
+  color: var(--white);
 }
 /* Modal backdrop */
 .cart-modal {
@@ -392,15 +401,7 @@ body {
   padding: 0.5rem 0.9rem;
   color: var(--primary-burgundy);
 }
-.dropdown.open .dropdown-menu { 
-	display: block;
-	position: absolute;
-	top: 100%;
-	left: 0;
-	z-index: 9999; /* 👈 ensures it shows above everything else */
-	visibility: visible;
-	opacity: 1;
-}
+.dropdown.open .dropdown-menu { display: block; }
 
 .menu-title {
   font-family: var(--font-body);  /* 'Playfair Display', serif */
@@ -412,7 +413,9 @@ body {
   color: var(--primary-burgundy);
 }
 
-body { padding-top: 5.5rem; } /* Keep content pushed below fixed header */
+
+/* Keep content pushed below fixed header */
+body { padding-top: 5.5rem; }
 
 /* (Optional) small screens: stack links */
 @media (max-width: 720px) {
@@ -568,114 +571,4 @@ body { padding-top: 5.5rem; } /* Keep content pushed below fixed header */
 .fa-instagram:hover {
   opacity: 0.7;
 }
-
-/* Limit Featured Treats width on the home page */
-.home-featured {
-  max-width: 1200px;      /* pick your favorite width: 1100–1280px works well */
-  margin: 0 auto;         /* center it */
-  padding: 0 1rem;        /* a little side breathing room */
-}
-
-/* 🏡 Featured Treats Grid - Home page only */
-.home-featured .products {
-  display: grid;
-  gap: 1.25rem;
-  justify-content: center; /* center leftover cards */
-}
-
-/* Fixed number of columns on desktop */
-.home-featured .products.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.home-featured .products.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.home-featured .products.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.home-featured .products.grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-
-/* Responsive collapse */
-@media (max-width: 1200px) {
-  .home-featured .products.grid-4, 
-  .home-featured .products.grid-5 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-@media (max-width: 900px) {
-  .home-featured .products.grid-3, 
-  .home-featured .products.grid-4, 
-  .home-featured .products.grid-5 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 560px) {
-  .home-featured .products.grid-2,
-  .home-featured .products.grid-3,
-  .home-featured .products.grid-4,
-  .home-featured .products.grid-5 {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Equal card heights for clean rows */
-.product {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.product img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  display: block;
-}
-
-.product .add-to-cart,
-.product .select-options {
-  margin-top: auto;
-}
-
-/* Keep the cart visible on mobile */
-.topnav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .75rem;
-  flex-wrap: nowrap;            /* don't wrap rows */
-  position: relative;
-}
-
-.navlinks {
-  display: flex;
-  gap: 1rem;
-  flex: 1 1 auto;               /* take remaining space */
-  min-width: 0;                 /* allow shrinking */
-  overflow-x: auto;             /* scroll if too many links */
-  white-space: nowrap;          /* keep links on one line */
-  -webkit-overflow-scrolling: touch;
-}
-
-.cart-icon {
-  flex: 0 0 auto;               /* never shrink */
-  margin-left: auto;            /* push to the right */
-  font-size: 1.6rem;            /* a bit bigger on mobile */
-}
-
-/* give the fixed header a bit more height on small screens */
-@media (max-width: 640px) {
-  .site-header { padding: .6rem .8rem; }
-  body { padding-top: 4.5rem; } /* keep content below header */
-}
-/* Quantity controls - black border and text */
-.cart-qty button {
-  border: 1px solid #000;   /* black border */
-  color: #000;              /* black text */
-  background: transparent;  /* optional, for clean look */
-}
-
-.cart-qty span {
-  color: #000;              /* black number */
-}
-
-.cart-qty button:hover {
-  background: #000;         /* black background on hover */
-  color: #fff;             /* white text on hover */
-}
-
 
