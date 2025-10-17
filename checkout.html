@@ -50,11 +50,44 @@
       const phone = document.getElementById("phone").value;
       const order_id = Math.floor(Math.random() * 1000000);
 
-      const orders = cart.map(item => ({
+      const orders = cart.map(item => {
+      // Try to auto-match product names to their images in your images/ folder
+      const safeName = item.name.toLowerCase();
+      let image_url = "https://via.placeholder.com/64"; // fallback
+    
+      if (safeName.includes("velvet") && safeName.includes("cake"))
+        image_url = "images/cakes/Red velvet cake.jpg";
+      else if (safeName.includes("chocolate") && safeName.includes("cake"))
+        image_url = "images/cakes/Chocolate cake.jpg";
+      else if (safeName.includes("oreo"))
+        image_url = "images/cakes/Oreo-white-cake.jpg";
+      else if (safeName.includes("caramel") && safeName.includes("tiramisu"))
+        image_url = "images/cupcakes/caramel-tiramisu-cupcakes.jpg";
+      else if (safeName.includes("velvet") && safeName.includes("cupcake"))
+        image_url = "images/cupcakes/Red-velvet-cupcake.jpg"; 
+      else if (safeName.includes("vanilla") && safeName.includes("cupcake"))
+        image_url = "images/cupcakes/vanilla cupcakes.jpg";  
+      else if (safeName.includes("velvet") && safeName.includes("cookies"))
+        image_url = "images/cookies/six red velvet cookies.jpeg";
+      else if (safeName.includes("cookie") && safeName.includes("cookies"))
+        image_url = "images/cookies/chocolate chip cookies.jpg";
+      else if (safeName.includes("monster") && safeName.includes("cookies"))
+        image_url = "images/cookies/Cookie-Monster-Cookies.jpg";
+      else if (safeName.includes("cream") && safeName.includes("cookies"))
+        image_url = "images/cookies/cookies n cream cookies.webp";
+      else if (safeName.includes("Strawberry") && safeName.includes("crunch"))
+        image_url = "images/cookies/Strawberry crunch cookies.webp";  
+      else if (safeName.includes("egg roll"))
+        image_url = "images/more/egg roll.webp";
+    
+      return {
+        image_url,
         name: item.name,
         units: item.qty,
         price: (item.price * item.qty).toFixed(2)
-      }));
+      };
+      });
+
 
       const cost = { tax: "0.00", total: total.toFixed(2) };
 
@@ -78,3 +111,4 @@
   </script>
 </body>
 </html>
+
