@@ -659,11 +659,12 @@ body { padding-top: 5.5rem; }
     }
 
 #more .product img {
-  max-height: 180px;
+  max-height: 70px;
 }
 
 #more .product {
-  padding: 0.8rem;
-  max-width: 300px;
+  padding: 0.6rem;
+  max-width: 70px;
 }
+
 
