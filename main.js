@@ -51,13 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
   btn.addEventListener('click', () => {
     addToCart(btn.dataset.name, btn.dataset.price);
   });
-});
+  });
 
   // If you’re on cart.html (i.e. #cart-items exists), render and sync
   if (document.getElementById('cart-items')) {
     renderCartPage();
     syncCartWithMenu();
   }
+}); 
 
 // Render the cart with “–” and “+” buttons
 function renderCartPage() {
@@ -227,6 +228,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
