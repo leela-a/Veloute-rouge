@@ -18,6 +18,19 @@ function saveCart() {
   }
 }
 
+function syncCartWithMenu() {
+  document.querySelectorAll('.product.configurable').forEach(card => {
+    const name = card.dataset.name;
+    const newPrice = parseFloat(card.dataset.price1);
+    const item = cart.find(i => i.name.startsWith(name));
+    if (item) {
+      item.price = newPrice; // update price
+      item.name = name;      // update name
+    }
+  });
+  saveCart();
+}
+
 // Add item (or bump qty)
 function addToCart(name, price) {
   const idx = cart.findIndex(i => i.name === name);
@@ -40,12 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-  // If you’re on cart.html (i.e. #cart-items exists), render it
+  // If you’re on cart.html (i.e. #cart-items exists), render and sync
   if (document.getElementById('cart-items')) {
     renderCartPage();
+    syncCartWithMenu();
   }
-});
 
 // Render the cart with “–” and “+” buttons
 function renderCartPage() {
@@ -216,3 +228,4 @@ addToCart = function(name, price, qty = 1) {
   }
   saveCart();
 };
+
