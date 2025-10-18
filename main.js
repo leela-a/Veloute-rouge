@@ -153,6 +153,7 @@ function openProductModal(fromCard) {
   pmState.name = fromCard.dataset.name;
   pmState.prices = {
     1:  parseFloat(fromCard.dataset.price1 || fromCard.dataset.priceOne || fromCard.dataset.price_1 || fromCard.dataset['price-1'] || fromCard.getAttribute('data-price-1')),
+    3:  parseFloat(fromCard.getAttribute('data-price-3')),
     6:  parseFloat(fromCard.getAttribute('data-price-6')),
     12: parseFloat(fromCard.getAttribute('data-price-12')),
   };
@@ -228,6 +229,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
