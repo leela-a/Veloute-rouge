@@ -134,7 +134,7 @@ window.addEventListener('hashchange', showCategoryFromHash);
 
 let pmState = {
   name: '',
-  prices: {1:0, 6:0, 12:0},  // per-pack price
+  prices: {1:0, 3:0, 6:0, 12:0},  // per-pack price
   pack: 1,                   // 1, 6 or 12
   qty: 1                     // number of packs
 };
@@ -211,12 +211,7 @@ if (pmEl) {
     addToCart(lineName, linePrice, pmState.qty);  // qty = number of packs
     closeProductModal();
   });
-
-  // Close handlers
-  pmCloseBtn.addEventListener('click', closeProductModal);
-  pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
-}
-
+  
 /* === Upgrade addToCart to accept a quantity (keeps old calls working) === */
 const _oldAddToCart = addToCart;
 addToCart = function(name, price, qty = 1) {
@@ -228,4 +223,10 @@ addToCart = function(name, price, qty = 1) {
   }
   saveCart();
 };
+  // Close handlers
+  pmCloseBtn.addEventListener('click', closeProductModal);
+  pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
+}
+
+
 
