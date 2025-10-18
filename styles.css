@@ -657,3 +657,11 @@ body { padding-top: 5.5rem; }
       font-weight: 600;
       display: none;
     }
+
+.menu-image {
+  width: 70%;       /* or try 70% for smaller */
+  max-width: 600px; /* prevents it from stretching too large */
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;   /* keeps it centered */
+}
