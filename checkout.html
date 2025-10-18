@@ -32,92 +32,102 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("0HT2vcmHhZdfLgtMU");
-    })();
 
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-    document.getElementById("checkout-total").textContent = total.toFixed(2);
+	<script>
+	  (function() {
+		emailjs.init("0HT2vcmHhZdfLgtMU");
+	  })();
 
-    document.getElementById("checkout-form").addEventListener("submit", function(e) {
-      e.preventDefault();
+	  document.addEventListener("DOMContentLoaded", () => {
+		// --- Load the cart and calculate total ---
+		const cart = JSON.parse(localStorage.getItem("cart")) || [];
+		const total = cart.reduce((sum, i) => sum + (parseFloat(i.price) || 0) * (i.qty || 0), 0);
+		document.getElementById("checkout-total").textContent = total.toFixed(2);
 
-      const first = document.getElementById("first").value;
-      const last = document.getElementById("last").value;
-      const email = document.getElementById("email").value;
-      const phone = document.getElementById("phone").value;
-      const order_id = Math.floor(Math.random() * 1000000);
+		// --- Handle form submission ---
+		const form = document.getElementById("checkout-form");
+		form.addEventListener("submit", function(e) {
+		  e.preventDefault();
 
-      const orders = cart.map(item => {
-      // Try to auto-match product names to their images in your images/ folder
-      const safeName = item.name.toLowerCase();
-      let image_url = "https://via.placeholder.com/64"; // fallback
-    
-      if (safeName.includes("velvet") && safeName.includes("cake"))
-        image_url = "images/cakes/Red velvet cake.jpg";
-      else if (safeName.includes("chocolate") && safeName.includes("cake"))
-        image_url = "images/cakes/Chocolate cake.jpg";
-      else if (safeName.includes("oreo"))
-        image_url = "images/cakes/Oreo-white-cake.jpg";
-      else if (safeName.includes("caramel") && safeName.includes("tiramisu"))
-        image_url = "images/cupcakes/caramel-tiramisu-cupcakes.jpg";
-      else if (safeName.includes("velvet") && safeName.includes("cupcake"))
-        image_url = "images/cupcakes/Red-velvet-cupcake.jpg"; 
-      else if (safeName.includes("vanilla") && safeName.includes("cupcake"))
-        image_url = "images/cupcakes/vanilla cupcakes.jpg";  
-      else if (safeName.includes("velvet") && safeName.includes("cookies"))
-        image_url = "images/cookies/six red velvet cookies.jpeg";
-      else if (safeName.includes("cookie") && safeName.includes("cookies"))
-        image_url = "images/cookies/chocolate chip cookies.jpg";
-      else if (safeName.includes("monster") && safeName.includes("cookies"))
-        image_url = "images/cookies/Cookie-Monster-Cookies.jpg";
-      else if (safeName.includes("cream") && safeName.includes("cookies"))
-        image_url = "images/cookies/cookies n cream cookies.webp";
-      else if (safeName.includes("Strawberry") && safeName.includes("crunch"))
-        image_url = "images/cookies/Strawberry crunch cookies.webp";  
-      else if (safeName.includes("egg roll"))
-        image_url = "images/more/egg roll.webp";
-    
-      return {
-        image_url,
-        name: item.name,
-        units: item.qty,
-        price: (item.price * item.qty).toFixed(2)
-      };
-      });
+		  const first = document.getElementById("first").value;
+		  const last = document.getElementById("last").value;
+		  const email = document.getElementById("email").value;
+		  const phone = document.getElementById("phone").value;
+		  const order_id = Math.floor(Math.random() * 1000000);
 
+		  // Build order details
+		  const orders = cart.map(item => {
+			const safeName = item.name.toLowerCase();
+			let image_url = "https://via.placeholder.com/64"; // fallback
 
-      const cost = { tax: "0.00", total: total.toFixed(2) };
+			if (safeName.includes("velvet") && safeName.includes("cake"))
+			  image_url = "images/cakes/Red velvet cake.jpg";
+			else if (safeName.includes("chocolate") && safeName.includes("cake"))
+			  image_url = "images/cakes/Chocolate cake.jpg";
+			else if (safeName.includes("oreo"))
+			  image_url = "images/cakes/Oreo-white-cake.jpg";
+			else if (safeName.includes("caramel") && safeName.includes("tiramisu"))
+			  image_url = "images/cupcakes/caramel-tiramisu-cupcakes.jpg";
+			else if (safeName.includes("velvet") && safeName.includes("cupcake"))
+			  image_url = "images/cupcakes/Red-velvet-cupcake.jpg";
+			else if (safeName.includes("vanilla") && safeName.includes("cupcake"))
+			  image_url = "images/cupcakes/vanilla cupcakes.jpg";
+			else if (safeName.includes("velvet") && safeName.includes("cookies"))
+			  image_url = "images/cookies/six red velvet cookies.jpeg";
+			else if (safeName.includes("chocolate") && safeName.includes("cookie"))
+			  image_url = "images/cookies/chocolate chip cookies.jpg";
+			else if (safeName.includes("monster") && safeName.includes("cookie"))
+			  image_url = "images/cookies/Cookie-Monster-Cookies.jpg";
+			else if (safeName.includes("cream") && safeName.includes("cookie"))
+			  image_url = "images/cookies/cookies n cream cookies.webp";
+			else if (safeName.includes("strawberry") && safeName.includes("crunch"))
+			  image_url = "images/cookies/Strawberry crunch cookies.webp";
+			else if (safeName.includes("egg roll"))
+			  image_url = "images/more/egg roll.webp";
 
-      const templateParams = {
-        email: email,
-        order_id: order_id,
-        orders: orders,
-        cost: cost
-      };
+			return {
+			  image_url,
+			  name: item.name,
+			  units: item.qty,
+			  price: (item.price * item.qty).toFixed(2)
+			};
+		  });
 
-      emailjs.send("service_vy9gnoy", "template_a34zt0a", templateParams)
-        .then(() => {
-          document.getElementById("confirmation").style.display = "block";
-          localStorage.removeItem("cart");
-        })
-        .catch(err => {
-          console.error("EmailJS error:", err);
-          alert("There was a problem sending your confirmation email.");
-        });
+		  const cost = { tax: "0.00", total: total.toFixed(2) };
 
-        // Send notification to owner
-        emailjs.send("service_xxx", "template_to_owner", templateParams)
-          .then(() => {
-            console.log("Owner notified of new order!");
-          })
-          .catch(err => {
-            console.error("Owner email error:", err);
-          });
-  </script>
+		  const templateParams = {
+			first_name: first,
+			last_name: last,
+			email: email,
+			phone: phone,
+			order_id: order_id,
+			orders: orders,
+			cost: cost
+		  };
+
+		  // --- Send confirmation email to customer ---
+		  emailjs.send("service_vy9gnoy", "template_a34zt0a", templateParams)
+			.then(() => {
+			  document.getElementById("confirmation").style.display = "block";
+			  localStorage.removeItem("cart");
+			})
+			.catch(err => {
+			  console.error("EmailJS error:", err);
+			  alert("There was a problem sending your confirmation email.");
+			});
+
+		  // --- Send notification to you (the owner) ---
+		  emailjs.send("service_vy9gnoy", "template_68eejea", templateParams)
+			.then(() => {
+			  console.log("Owner notified of new order!");
+			})
+			.catch(err => {
+			  console.error("Owner email error:", err);
+			});
+		});
+	  });
+	</script>
+
 </body>
 </html>
-
 
