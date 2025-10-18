@@ -107,8 +107,17 @@
           console.error("EmailJS error:", err);
           alert("There was a problem sending your confirmation email.");
         });
-    });
+
+        // Send notification to owner
+        emailjs.send("service_xxx", "template_to_owner", templateParams)
+          .then(() => {
+            console.log("Owner notified of new order!");
+          })
+          .catch(err => {
+            console.error("Owner email error:", err);
+          });
   </script>
 </body>
 </html>
+
 
