@@ -667,4 +667,61 @@ body { padding-top: 5.5rem; }
   max-width: 70px;
 }
 
+/* ===== Base styling for product cards (desktop) ===== */
+.category article {
+  max-width: 360px;
+  margin: 0 auto 1.8rem;
+  padding: 1.2rem;
+  border-radius: 1rem;
+}
+
+.category article img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+}
+
+.category .product-name {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.category .product-price {
+  font-size: 1rem;
+  color: var(--primary-burgundy);
+}
+
+.category .configure-btn {
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+}
+
+/* ===== Responsive sizing (phones & smaller tablets) ===== */
+@media (max-width: 768px) {
+  .category article {
+    max-width: 300px;      /* smaller box */
+    padding: 0.8rem;
+    border-radius: 0.8rem;
+  }
+
+  .category article img {
+    max-height: 180px;     /* shrink image */
+    border-radius: 0.6rem;
+  }
+
+  .category .product-name {
+    font-size: 1rem;
+  }
+
+  .category .product-price {
+    font-size: 0.9rem;
+  }
+
+  .category .configure-btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
 
