@@ -40,9 +40,19 @@
 
 	  document.addEventListener("DOMContentLoaded", () => {
 		// --- Load the cart and calculate total ---
-		const cart = JSON.parse(localStorage.getItem("cart")) || [];
-		const total = cart.reduce((sum, i) => sum + (parseFloat(i.price) || 0) * (i.qty || 0), 0);
-		document.getElementById("checkout-total").textContent = total.toFixed(2);
+		document.addEventListener("DOMContentLoaded", () => {
+		const storedCart = localStorage.getItem("cart");
+		const cart = storedCart ? JSON.parse(storedCart) : [];
+		
+		  if (!cart.length) {
+		    document.getElementById("checkout-total").textContent = "0.00";
+		    return;
+		  }
+		
+		  const total = cart.reduce((sum, item) => sum + (parseFloat(item.price) || 0) * (item.qty || 0), 0);
+		  document.getElementById("checkout-total").textContent = total.toFixed(2);
+		});
+
 
 		// --- Handle form submission ---
 		const form = document.getElementById("checkout-form");
@@ -130,6 +140,7 @@
 
 </body>
 </html>
+
 
 
 
