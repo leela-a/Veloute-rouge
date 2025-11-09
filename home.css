@@ -4,15 +4,10 @@
 
 /* Navbar & Hero Velvet Style */
 .home-hero-header {
-  background: transparent; /* navbar shares same background as hero */
-  position: absolute;       /* sits on top of hero image */
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  padding: 1.5rem 0;
+  background: url('images/velvet.png') center/cover no-repeat;
   border: none;
   box-shadow: none;
+  padding: 1.5rem 0;
 }
 
 .home-hero-header .topnav {
