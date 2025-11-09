@@ -191,3 +191,56 @@ body {
   .navlinks { gap: 0.8rem; }
 }
 
+.site-header {
+  position: relative;
+}
+
+/* Homepage velvet background */
+.home-page .site-header {
+  background: url('images/velvet.png') center/cover no-repeat;
+  border-bottom: none;
+}
+
+/* Make the nav links white for the velvet header */
+.home-page .topnav a,
+.home-page .fa-instagram,
+.home-page .cart-icon {
+  color: white;
+}
+
+/* Hero section below the navbar */
+.hero {
+  background: url('images/velvet.png') center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 10rem 2rem 8rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.hero .btn {
+  background: #fff;
+  color: #7D3C3C;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.hero .btn:hover {
+  background: #e8e8e8;
+}
+
+
