@@ -35,11 +35,10 @@ body {
 
 /* ---------- Navbar (Default Pages) ---------- */
 .site-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
+  position: relative; /* not fixed */
   background: var(--soft-blush);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  z-index: 20;
+  border: none;
+  box-shadow: none;
 }
 
 .topnav {
@@ -190,3 +189,4 @@ body {
 @media (max-width: 720px) {
   .navlinks { gap: 0.8rem; }
 }
+
