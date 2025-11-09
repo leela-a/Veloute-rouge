@@ -35,10 +35,11 @@ body {
 
 /* ---------- Navbar (Default Pages) ---------- */
 .site-header {
-  position: relative; /* not fixed */
+  position: fixed;
+  top: 0; left: 0; right: 0;
   background: var(--soft-blush);
-  border: none;
-  box-shadow: none;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  z-index: 20;
 }
 
 .topnav {
