@@ -135,7 +135,7 @@ window.addEventListener('hashchange', showCategoryFromHash);
 
 let pmState = {
   name: '',
-  prices: {1:0, 3:0, 6:0, 12:0},  // per-pack price
+  prices: {1:0, 3:0, 4:0, 6:0, 12:0},  // per-pack price
   pack: 1,                   // 1, 6 or 12
   qty: 1                     // number of packs
 };
@@ -154,6 +154,7 @@ function openProductModal(fromCard) {
   pmState.prices = {
     1:  parseFloat(fromCard.dataset.price1 || fromCard.dataset.priceOne || fromCard.dataset.price_1 || fromCard.dataset['price-1'] || fromCard.getAttribute('data-price-1')),
     3:  parseFloat(fromCard.getAttribute('data-price-3')),
+    4:  parseFloat(fromCard.getAttribute('data-price-4')),
     6:  parseFloat(fromCard.getAttribute('data-price-6')),
     12: parseFloat(fromCard.getAttribute('data-price-12')),
   };
@@ -229,6 +230,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
