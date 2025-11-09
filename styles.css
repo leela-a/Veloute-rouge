@@ -125,15 +125,6 @@ body {
   }
 }
 
-
-.about img {
-	flex: 1 1 300px;
-	border-radius: 1rem;
-}
-.about .text {
-	flex: 1 1 300px;
-}
-.about h2,
 .menu h2,
 .contact h2 {
 	font-family: var(--font-heading);
@@ -868,3 +859,4 @@ body {
     font-size: 0.9rem;
   }
 }
+
