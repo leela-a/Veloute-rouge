@@ -1,0 +1,192 @@
+/* ============================
+   BASE STYLES (shared sitewide)
+   ============================ */
+
+:root {
+  --card-width: 150px;
+  --card-font-scale: 0.06;
+  --primary-burgundy: #7D3C3C;
+  --soft-blush: #F7E7E7;
+  --accent-gold: #D4AF7F;
+  --white: #FFFFFF;
+  --text-dark: #3A2C2B;
+  --font-heading: 'Great Vibes', cursive;
+  --font-body: 'Playfair Display', serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--primary-burgundy);
+  background: var(--soft-blush);
+  line-height: 1.6;
+  padding-top: 5.5rem; /* pushes below navbar */
+}
+
+/* ---------- Navbar (Default Pages) ---------- */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: var(--soft-blush);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  z-index: 20;
+}
+
+.topnav {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.brand {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: var(--primary-burgundy);
+  text-decoration: none;
+}
+
+.navlinks {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.navlinks a, .dropbtn {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--primary-burgundy);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.navlinks a:hover, .dropbtn:hover {
+  opacity: 0.8;
+}
+
+/* ---------- Dropdown ---------- */
+.dropdown { position: relative; }
+.caret { margin-left: 0.25rem; }
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 220px;
+  background: var(--soft-blush);
+  border: 1px solid var(--accent-gold);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  display: none;
+}
+
+.dropdown-menu li { list-style: none; }
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  color: var(--primary-burgundy);
+}
+
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+/* ---------- Product Cards ---------- */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.product {
+  background: var(--soft-blush);
+  border: 2px solid var(--accent-gold);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.product img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.product-name {
+  text-align: center;
+  margin: 0.9rem 0 0.35rem;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--primary-burgundy);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.product .divider {
+  width: 1.6rem;
+  height: 3px;
+  background: var(--primary-burgundy);
+  opacity: .6;
+  border-radius: 3px;
+  margin: 0.3rem auto 0.6rem;
+}
+
+.product-price {
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-burgundy);
+  margin-bottom: 0.9rem;
+}
+
+.add-to-cart, .configure-btn {
+  background: var(--primary-burgundy);
+  color: var(--soft-blush);
+  border: 0;
+  padding: 0.75rem 1rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  border-radius: 0 0 1rem 1rem;
+  cursor: pointer;
+}
+
+.add-to-cart:hover { opacity: 0.9; }
+
+/* ---------- Cart, Checkout, Contact ---------- */
+.cart-page {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--primary-burgundy);
+  border: 2px solid var(--accent-gold);
+  border-radius: 1rem;
+  color: var(--white);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .navlinks { gap: 0.8rem; }
+}
