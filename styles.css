@@ -95,8 +95,8 @@ body {
 .hero .btn {
   position: relative;
   z-index: 1;
-  background: var(--accent-gold);
-  color: var(--primary-burgundy);
+  background: var(black);
+  color: var(white);
   padding: 0.8rem 2rem;
   border-radius: 0.6rem;
   font-weight: 700;
@@ -859,4 +859,5 @@ body {
     font-size: 0.9rem;
   }
 }
+
 
