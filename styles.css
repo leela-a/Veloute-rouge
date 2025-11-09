@@ -21,6 +21,30 @@ img {
 	margin: 0; padding: 0;
 }
 
+/* ===== Homepage Navbar Styling ===== */
+.home-page .site-header {
+  background: url('images/velvet.png') center/cover no-repeat;
+  border-bottom: none;
+}
+
+.home-page .topnav a,
+.home-page .dropbtn,
+.home-page .fa-instagram,
+.home-page .cart-icon {
+  color: var(--white);
+}
+
+.home-page .dropbtn:hover,
+.home-page .navlinks a:hover,
+.home-page .fa-instagram:hover {
+  opacity: 0.85;
+}
+
+.home-page .cart-icon #cart-count {
+  background: var(--accent-gold);
+  color: var(--primary-burgundy);
+}
+
 body {
 	font-family: var(--font-body);
 	color: var(--primary-burgundy);
@@ -28,47 +52,79 @@ body {
 	line-height: 1.6;
 }
 
-/* HERO */
-
+/* ===== HERO SECTION ===== */
 .hero {
-	position: relative;
-	background: url('images/velvet.png') center/cover no-repeat;
-	padding: 6rem 1rem;
-	text-align: center;
-	color: var(--white);
+  position: relative;
+  background: url('images/velvet.png') center/cover no-repeat;
+  padding: 8rem 1rem 7rem;
+  text-align: center;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25); /* adds soft overlay */
+  z-index: 0;
 }
 
 .hero h1 {
-	font-family: var(--font-heading);
-	font-size: 3rem;
-	margin-bottom: 0.5rem;
-}
-.hero p {
-	font-size: 1.25rem;
-	margin-bottom: 1.5rem;
-}
-.hero .btn {
-	background: var(--accent-gold);
-	color: var(--primary-burgundy);
-	padding: 0.75rem 1.5rem;
-	font-weight: bold;
-	text-decoration: none;
-	border-radius: 0.5rem;
-	transition: opacity 0.2s;
-}
-.hero .btn:hover {
-	opacity: 0.9;
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  color: var(--white);
+  margin-bottom: 1rem;
 }
 
-.container {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 2rem;
-	max-width: 1000px;
-	margin: 2rem auto;
-	padding: 0 1rem;
+.hero p {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto 2rem;
 }
+
+.hero .btn {
+  position: relative;
+  z-index: 1;
+  background: var(--accent-gold);
+  color: var(--primary-burgundy);
+  padding: 0.8rem 2rem;
+  border-radius: 0.6rem;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.hero .btn:hover {
+  background: #e5be93;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero {
+    padding: 6rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
 
 .about img {
 	flex: 1 1 300px;
@@ -709,6 +765,7 @@ body {
     align-items: flex-start;
   }
 }
+
 
 
 
