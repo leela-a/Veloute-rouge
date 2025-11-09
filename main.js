@@ -149,54 +149,55 @@ const pmAddBtn    = document.getElementById('pm-add');
 const pmCloseBtn  = document.getElementById('pm-close');
 
 function openProductModal(fromCard) {
-  // Read dataset (prices & name) from the clicked card
   pmState.name = fromCard.dataset.name;
   pmState.prices = {
-    1:  parseFloat(fromCard.dataset.price1 || fromCard.dataset.priceOne || fromCard.dataset.price_1 || fromCard.dataset['price-1'] || fromCard.getAttribute('data-price-1')),
-    3:  parseFloat(fromCard.getAttribute('data-price-3'))
-    6:  parseFloat(fromCard.getAttribute('data-price-6')),
-    12: parseFloat(fromCard.getAttribute('data-price-12')),
+    1:  parseFloat(fromCard.getAttribute('data-price-1')) || 0,
+    3:  parseFloat(fromCard.getAttribute('data-price-3')) || 0,
+    4:  parseFloat(fromCard.getAttribute('data-price-4')) || 0,
+    6:  parseFloat(fromCard.getAttribute('data-price-6')) || 0,
+    12: parseFloat(fromCard.getAttribute('data-price-12')) || 0,
   };
   pmState.pack = 1;
   pmState.qty  = 1;
 
-  // Fill UI
   pmNameEl.textContent = pmState.name;
-  pmVariantEl.value = '1';
   pmQtyEl.textContent = pmState.qty.toString();
-  refreshPmPrice();
 
-  // === Customize dropdown options for "Assorted cupcakes" only ===
   const variantSelect = pmVariantEl;
-  const productName = fromCard.dataset.name.toLowerCase();
-  variantSelect.innerHTML = ''; // clear previous options
+  variantSelect.innerHTML = ''; // clear old options
 
-  if (productName.includes('assorted')) {
-    // Special options for Assorted cupcakes
+  const productName = (fromCard.dataset.name || '').toLowerCase();
+
+  // === special cases ===
+  if (productName.includes('Assorted cupcakes')) {
+    // only show 4, 6, and 12
     variantSelect.innerHTML = `
-      <option value="4">Four pieces (4)</option>
+      <option value="4" selected>Four pieces (4)</option>
       <option value="6">Half-dozen (6)</option>
       <option value="12">Dozen (12)</option>
     `;
+    pmState.pack = 4;
 
-    // Add a price for the 4-piece option (if not already in dataset)
-    pmState.prices[4] = parseFloat(fromCard.dataset.price4 || '10.00');
+  } else if (productName.includes('Assorted cookies')) {
+    // only show 6 and 12
+    variantSelect.innerHTML = `
+      <option value="6" selected>Half-dozen (6)</option>
+      <option value="12">Dozen (12)</option>
+    `;
+    pmState.pack = 6;
+
   } else {
-    // Default for all other items
+    // default for everything else
     variantSelect.innerHTML = `
       <option value="1">Single</option>
-      <option value="3">Three pieces (3)</option>
+      <option value="3" selected>Three pieces (3)</option>
       <option value="6">Half-dozen (6)</option>
       <option value="12">Dozen (12)</option>
     `;
+    pmState.pack = 1;
   }
 
-  // Reset pack and price display
-  pmState.pack = 1;
   refreshPmPrice();
-
-
-  // Show modal
   pmEl.style.display = 'flex';
 }
 
@@ -259,6 +260,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
