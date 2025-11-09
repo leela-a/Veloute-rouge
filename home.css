@@ -1,0 +1,107 @@
+/* ============================
+   HOMEPAGE-SPECIFIC STYLES
+   ============================ */
+
+/* Navbar & Hero Velvet Style */
+.home-hero-header {
+  background: url('images/velvet.png') center/cover no-repeat;
+  border: none;
+  box-shadow: none;
+  padding: 1.5rem 0;
+}
+
+.home-hero-header .topnav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.serif-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+
+.home-hero-header .navlinks {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.home-hero-header .navlinks a {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.home-hero-header .navlinks a:hover {
+  opacity: 0.8;
+}
+
+.home-hero-header .fa-instagram {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+/* Hero Section */
+.classic-hero {
+  background: url('images/velvet.png') center/cover no-repeat;
+  text-align: center;
+  color: #fff;
+  padding: 10rem 2rem 8rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.classic-hero h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.classic-hero p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.classic-hero .btn {
+  background: #fff;
+  color: #7D3C3C;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.classic-hero .btn:hover {
+  background: #e8e8e8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .classic-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .classic-hero p {
+    font-size: 1rem;
+  }
+
+  .home-hero-header .navlinks {
+    gap: 1rem;
+  }
+
+  .home-hero-header .navlinks a {
+    font-size: 0.9rem;
+  }
+}
