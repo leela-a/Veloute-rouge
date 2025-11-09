@@ -135,7 +135,7 @@ window.addEventListener('hashchange', showCategoryFromHash);
 
 let pmState = {
   name: '',
-  prices: {1:0, 3:0, 4:0, 6:0, 12:0},  // per-pack price
+  prices: {1:0, 3:0, 6:0, 12:0},  // per-pack price
   pack: 1,                   // 1, 6 or 12
   qty: 1                     // number of packs
 };
@@ -153,8 +153,7 @@ function openProductModal(fromCard) {
   pmState.name = fromCard.dataset.name;
   pmState.prices = {
     1:  parseFloat(fromCard.dataset.price1 || fromCard.dataset.priceOne || fromCard.dataset.price_1 || fromCard.dataset['price-1'] || fromCard.getAttribute('data-price-1')),
-    3:  parseFloat(fromCard.getAttribute('data-price-3')),
-    4:  parseFloat(fromCard.getAttribute('data-price-4')),
+    3:  parseFloat(fromCard.getAttribute('data-price-3'))
     6:  parseFloat(fromCard.getAttribute('data-price-6')),
     12: parseFloat(fromCard.getAttribute('data-price-12')),
   };
@@ -166,6 +165,36 @@ function openProductModal(fromCard) {
   pmVariantEl.value = '1';
   pmQtyEl.textContent = pmState.qty.toString();
   refreshPmPrice();
+
+  // === Customize dropdown options for "Assorted cupcakes" only ===
+  const variantSelect = pmVariantEl;
+  const productName = fromCard.dataset.name.toLowerCase();
+  variantSelect.innerHTML = ''; // clear previous options
+
+  if (productName.includes('assorted')) {
+    // Special options for Assorted cupcakes
+    variantSelect.innerHTML = `
+      <option value="4">Four pieces (4)</option>
+      <option value="6">Half-dozen (6)</option>
+      <option value="12">Dozen (12)</option>
+    `;
+
+    // Add a price for the 4-piece option (if not already in dataset)
+    pmState.prices[4] = parseFloat(fromCard.dataset.price4 || '10.00');
+  } else {
+    // Default for all other items
+    variantSelect.innerHTML = `
+      <option value="1">Single</option>
+      <option value="3">Three pieces (3)</option>
+      <option value="6">Half-dozen (6)</option>
+      <option value="12">Dozen (12)</option>
+    `;
+  }
+
+  // Reset pack and price display
+  pmState.pack = 1;
+  refreshPmPrice();
+
 
   // Show modal
   pmEl.style.display = 'flex';
@@ -230,6 +259,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
