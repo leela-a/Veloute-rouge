@@ -74,10 +74,9 @@ body {
 }
 
 .hero h1 {
-  position: relative;
-  z-index: 1;
-  font-family: var(--font-heading);
-  font-size: 3.5rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 3rem;
   color: var(--white);
   margin-bottom: 1rem;
 }
@@ -253,10 +252,10 @@ body {
   color: var(--primary-burgundy);
 }
 #cart-count {
-  background: var(--accent-gold);
+  background: none;
   color: var(--primary-burgundy);
   border-radius: 50%;
-  padding: 0.2rem 0.5rem;
+  padding: 0;
   margin-left: 0.25rem;
   font-size: 0.9rem;
   vertical-align: top;
@@ -915,5 +914,6 @@ body {
     gap: 1rem;
   }
 }
+
 
 
