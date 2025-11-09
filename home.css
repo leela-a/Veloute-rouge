@@ -2,23 +2,6 @@
    HOMEPAGE-SPECIFIC STYLES
    ============================ */
 
-/* Navbar & Hero Velvet Style */
-.home-hero-header {
-  background: url('images/velvet.png') center/cover no-repeat;
-  border: none;
-  box-shadow: none;
-  padding: 1.5rem 0;
-}
-
-.home-hero-header .topnav {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-}
-
 .serif-brand {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
@@ -27,64 +10,46 @@
   text-decoration: none;
 }
 
-.home-hero-header .navlinks {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-}
 
-.home-hero-header .navlinks a {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.05rem;
-  color: #fff;
-  text-decoration: none;
-  transition: opacity 0.3s;
-}
-
-.home-hero-header .navlinks a:hover {
-  opacity: 0.8;
-}
-
-.home-hero-header .fa-instagram {
-  color: #fff;
-  font-size: 1.1rem;
-}
 
 /* Hero Section */
 .classic-hero {
   background: url('images/velvet.png') center/cover no-repeat;
-  text-align: center;
   color: #fff;
-  padding: 10rem 2rem 8rem;
+  padding: 2rem 2rem 8rem; /* top padding gives space for nav */
   font-family: 'Playfair Display', serif;
+  text-align: center;
 }
 
-.classic-hero h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+/* Navbar inside hero */
+.classic-hero .topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6rem;
 }
 
-.classic-hero p {
-  font-size: 1.25rem;
-  line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto 2rem;
-}
-
-.classic-hero .btn {
-  background: #fff;
-  color: #7D3C3C;
-  padding: 0.8rem 1.8rem;
-  border-radius: 0.5rem;
-  font-weight: 700;
+.classic-hero .brand {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: #fff;
   text-decoration: none;
-  transition: all 0.2s ease;
 }
 
-.classic-hero .btn:hover {
-  background: #e8e8e8;
+.classic-hero .navlinks {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.classic-hero .navlinks a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.classic-hero .navlinks a:hover {
+  opacity: 0.8;
 }
 
 /* Responsive */
