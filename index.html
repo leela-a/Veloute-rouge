@@ -36,6 +36,15 @@
 	    <a href="#" class="brand">Velouté Rouge Bakery</a>
 	    <ul class="navlinks">
 	      <li><a href="index.html">Home</a></li>
+		  <li class="dropdown">
+          <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Menu <span class="caret">▾</span></button>
+	          <ul class="dropdown-menu" role="menu">
+		            <li><a href="#cakes">Cakes</a></li>
+		            <li><a href="#cupcakes">Cupcakes</a></li>
+		            <li><a href="#cookies">Cookies</a></li>
+		            <li><a href="#more">More</a></li>
+	          </ul>
+          </li>
           <li><a href="menu.html">All Menu</a></li>		
 		  <li><a href="mailto:velouterouge.bakery@gmail.com">Contact Us</a></li>
 				<li>
@@ -43,7 +52,7 @@
 					<i class="fab fa-instagram"></i>
 				  </a>
 				</li>
-	      <li><a href="cart.html" class="cart-icon">Cart (1)</a></li>
+	      <li><a href="cart.html" class="cart-icon">Cart (<span id="cart-count">0</span>)</a></li>
 	    </ul>
 	  </nav>
 
@@ -219,6 +228,7 @@
 </body>
 
 </html>		
+
 
 
 
