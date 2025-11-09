@@ -9,6 +9,13 @@
 
 </head>
 <body>
+	<header class="site-header">
+  <nav class="topnav">
+    <a class="brand" href="index.html">Velouté Rouge</a>
+    <a href="cart.html" class="cart-icon">🛒</a>
+  </nav>
+</header>
+
   <a href="cart.html" class="back-link">× Back</a>
 
   <main class="checkout-page">
@@ -37,6 +44,12 @@
 	  (function() {
 		emailjs.init("0HT2vcmHhZdfLgtMU");
 	  })();
+
+		// optional sync with menu data if on checkout page
+		document.addEventListener("DOMContentLoaded", () => {
+		  const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+		  localStorage.setItem("cart", JSON.stringify(storedCart)); // re-save in case anything changed
+		});
 
 	  document.addEventListener("DOMContentLoaded", () => {
 		// --- Load the cart and calculate total ---
@@ -140,6 +153,7 @@
 
 </body>
 </html>
+
 
 
 
