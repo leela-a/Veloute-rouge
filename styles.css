@@ -917,30 +917,50 @@ body {
 
 .flavor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 1rem;
   margin-top: 0.5rem;
 }
 
 .flavor-option {
-  border: 1px solid #d9b9b9;
-  background-color: #fff5f5;
-  padding: 0.5rem;
-  border-radius: 8px;
-  text-align: center;
+  position: relative;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  overflow: hidden;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.25s ease;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.flavor-option img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+}
+
+.flavor-option span {
+  display: block;
+  padding: 0.4rem 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: #fff5f5;
+  color: #6b0f0f;
 }
 
 .flavor-option:hover {
-  background-color: #f6e3e3;
+  transform: scale(1.03);
 }
 
 .flavor-option.selected {
-  background-color: #b22222;
-  color: white;
-  border-color: #a01616;
+  border-color: #b22222;
+  box-shadow: 0 0 0 3px rgba(178,34,34,0.3);
 }
 
-
+.flavor-option.selected span {
+  background-color: #b22222;
+  color: #fff;
+}
 
