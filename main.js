@@ -200,6 +200,7 @@ function openProductModal(fromCard) {
   refreshPmPrice();
 
   // --- Flavor picker logic ---
+// --- Flavor picker logic ---
 const flavorSection = document.getElementById('flavor-section');
 const flavorGrid = document.getElementById('flavor-grid');
 const flavorNote = document.getElementById('flavor-limit-note');
@@ -208,40 +209,48 @@ flavorSection.style.display = 'none';
 
 if (productName.includes('assorted cookies')) {
   flavorSection.style.display = 'block';
+
   const flavors = [
-    'Red velvet cookie',
-    "S'mores cookie",
-    'Chocolate chip cookie',
-    'Cookies n cream cookie',
-    'Cookie monster cookie',
-    'Strawberry crunch cookie',
-    'Grinch cookie'
+    { name: 'Red velvet cookie', img: 'images/cookies/six red velvet cookies.jpeg' },
+    { name: "S'mores cookie", img: "images/cookies/S'mores cookies.jpg" },
+    { name: 'Chocolate chip cookie', img: 'images/cookies/chocolate chip cookies.jpg' },
+    { name: 'Cookies n cream cookie', img: 'images/cookies/cookies n cream cookies.webp' },
+    { name: 'Cookie monster cookie', img: 'images/cookies/Cookie-Monster-Cookies.jpg' },
+    { name: 'Strawberry crunch cookie', img: 'images/cookies/Strawberry crunch cookies.webp' },
+    { name: 'Grinch cookie', img: 'images/cookies/Grinch cookies.jpg' } // optional: add image
   ];
-  
-  // Create clickable buttons for each flavor
+
+  // Create clickable image cards
   flavors.forEach(flavor => {
     const div = document.createElement('div');
-    div.textContent = flavor;
     div.classList.add('flavor-option');
+    div.innerHTML = `
+      <img src="${flavor.img}" alt="${flavor.name}">
+      <span>${flavor.name}</span>
+    `;
     div.addEventListener('click', () => {
       div.classList.toggle('selected');
       enforceFlavorLimit();
     });
     flavorGrid.appendChild(div);
   });
-  
+
   enforceFlavorLimit();
-  
+
   function enforceFlavorLimit() {
     const selected = flavorGrid.querySelectorAll('.selected');
     const limit = parseInt(pmVariantEl.value, 10);
     flavorNote.textContent = `You can select up to ${limit} flavors. (${selected.length}/${limit} chosen)`;
-    
+
     if (selected.length > limit) {
       selected[selected.length - 1].classList.remove('selected');
       flavorNote.textContent = `You can select up to ${limit} flavors. Limit reached!`;
     }
   }
+
+  // Update the flavor limit note when quantity changes
+  pmVariantEl.addEventListener('change', enforceFlavorLimit);
+}
   
   // Update limit when quantity dropdown changes
   pmVariantEl.addEventListener('change', enforceFlavorLimit);
@@ -315,6 +324,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
