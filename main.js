@@ -164,33 +164,33 @@ function openProductModal(fromCard) {
   pmQtyEl.textContent = pmState.qty.toString();
 
   const variantSelect = pmVariantEl;
-  variantSelect.innerHTML = ''; // clear old options
+  variantSelect.innerHTML = ''; // clear any old options
 
   const productName = (fromCard.dataset.name || '').toLowerCase();
 
-  // === special cases ===
+  // === Special logic ===
   if (productName.includes('Assorted cupcakes')) {
-    // only show 4, 6, and 12
+    // show only 4, 6, and 12
     variantSelect.innerHTML = `
       <option value="4" selected>Four pieces (4)</option>
       <option value="6">Half-dozen (6)</option>
       <option value="12">Dozen (12)</option>
     `;
     pmState.pack = 4;
-
-  } else if (productName.includes('Assorted cookies')) {
-    // only show 6 and 12
+  } 
+  else if (productName.includes('Assorted cookies')) {
+    // show only 6 and 12
     variantSelect.innerHTML = `
       <option value="6" selected>Half-dozen (6)</option>
       <option value="12">Dozen (12)</option>
     `;
     pmState.pack = 6;
-
-  } else {
+  } 
+  else {
     // default for everything else
     variantSelect.innerHTML = `
-      <option value="1">Single</option>
-      <option value="3" selected>Three pieces (3)</option>
+      <option value="1" selected>Single</option>
+      <option value="3">Three pieces (3)</option>
       <option value="6">Half-dozen (6)</option>
       <option value="12">Dozen (12)</option>
     `;
@@ -260,6 +260,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
