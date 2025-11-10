@@ -169,7 +169,7 @@ function openProductModal(fromCard) {
   const productName = (fromCard.dataset.name || '').toLowerCase();
 
   // === Special logic ===
-  if (productName.includes('Assorted cupcakes')) {
+  if (productName.includes('assorted cupcakes')) {
     // show only 4, 6, and 12
     variantSelect.innerHTML = `
       <option value="4" selected>Four pieces (4)</option>
@@ -178,7 +178,7 @@ function openProductModal(fromCard) {
     `;
     pmState.pack = 4;
   } 
-  else if (productName.includes('Assorted cookies')) {
+  else if (productName.includes('assorted cookies')) {
     // show only 6 and 12
     variantSelect.innerHTML = `
       <option value="6" selected>Half-dozen (6)</option>
@@ -260,6 +260,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
