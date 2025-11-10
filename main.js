@@ -198,6 +198,54 @@ function openProductModal(fromCard) {
   }
 
   refreshPmPrice();
+
+  // --- Flavor picker logic ---
+const flavorSection = document.getElementById('flavor-section');
+const flavorGrid = document.getElementById('flavor-grid');
+const flavorNote = document.getElementById('flavor-limit-note');
+flavorGrid.innerHTML = '';
+flavorSection.style.display = 'none';
+
+if (productName.includes('assorted cookies')) {
+  flavorSection.style.display = 'block';
+  const flavors = [
+    'Red velvet cookie',
+    "S'mores cookie",
+    'Chocolate chip cookie',
+    'Cookies n cream cookie',
+    'Cookie monster cookie',
+    'Strawberry crunch cookie',
+    'Grinch cookie'
+  ];
+  
+  // Create clickable buttons for each flavor
+  flavors.forEach(flavor => {
+    const div = document.createElement('div');
+    div.textContent = flavor;
+    div.classList.add('flavor-option');
+    div.addEventListener('click', () => {
+      div.classList.toggle('selected');
+      enforceFlavorLimit();
+    });
+    flavorGrid.appendChild(div);
+  });
+  
+  enforceFlavorLimit();
+  
+  function enforceFlavorLimit() {
+    const selected = flavorGrid.querySelectorAll('.selected');
+    const limit = parseInt(pmVariantEl.value, 10);
+    flavorNote.textContent = `You can select up to ${limit} flavors. (${selected.length}/${limit} chosen)`;
+    
+    if (selected.length > limit) {
+      selected[selected.length - 1].classList.remove('selected');
+      flavorNote.textContent = `You can select up to ${limit} flavors. Limit reached!`;
+    }
+  }
+  
+  // Update limit when quantity dropdown changes
+  pmVariantEl.addEventListener('change', enforceFlavorLimit);
+}  
   pmEl.style.display = 'flex';
 }
 
@@ -236,14 +284,21 @@ if (pmEl) {
   });
 
   // Add to cart (name includes the variant label)
-  pmAddBtn.addEventListener('click', () => {
-    const variantLabel = pmState.pack === 12 ? 'Dozen (12)' : (pmState.pack === 6 ? 'Half-dozen (6)' : 'Single');
-    const lineName     = `${pmState.name} – ${variantLabel}`;
-    const linePrice    = pmState.prices[pmState.pack];
+pmAddBtn.addEventListener('click', () => {
+  const variantLabel = pmState.pack === 12 ? 'Dozen (12)' : (pmState.pack === 6 ? 'Half-dozen (6)' : (pmState.pack === 4 ? 'Four pieces (4)' : 'Single'));
+  let lineName = `${pmState.name} – ${variantLabel}`;
+  const linePrice = pmState.prices[pmState.pack];
+  
+  // Include selected flavors if applicable
+  const selectedFlavors = [...document.querySelectorAll('.flavor-option.selected')].map(div => div.textContent);
+  if (selectedFlavors.length > 0) {
+    lineName += ` [${selectedFlavors.join(', ')}]`;
+  }
 
-    addToCart(lineName, linePrice, pmState.qty);  // qty = number of packs
-    closeProductModal();
-  });
+  addToCart(lineName, linePrice, pmState.qty);
+  closeProductModal();
+});
+
   
 /* === Upgrade addToCart to accept a quantity (keeps old calls working) === */
 const _oldAddToCart = addToCart;
@@ -260,6 +315,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
