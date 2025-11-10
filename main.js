@@ -149,13 +149,14 @@ const pmAddBtn    = document.getElementById('pm-add');
 const pmCloseBtn  = document.getElementById('pm-close');
 
 function openProductModal(fromCard) {
+  // --- Base setup ---
   pmState.name = fromCard.dataset.name;
   pmState.prices = {
     1:  parseFloat(fromCard.getAttribute('data-price-1')) || 0,
     3:  parseFloat(fromCard.getAttribute('data-price-3')) || 0,
     4:  parseFloat(fromCard.getAttribute('data-price-4')) || 0,
     6:  parseFloat(fromCard.getAttribute('data-price-6')) || 0,
-    12: parseFloat(fromCard.getAttribute('data-price-12')) || 0,
+    12: parseFloat(fromCard.getAttribute('data-price-12')) || 0
   };
   pmState.pack = 1;
   pmState.qty  = 1;
@@ -168,7 +169,7 @@ function openProductModal(fromCard) {
 
   const productName = (fromCard.dataset.name || '').toLowerCase();
 
-  // === Special logic ===
+  // === Special logic for variants ===
   if (productName.includes('assorted cupcakes')) {
     // show only 4, 6, and 12
     variantSelect.innerHTML = `
@@ -199,62 +200,58 @@ function openProductModal(fromCard) {
 
   refreshPmPrice();
 
-  // --- Flavor picker logic ---
-// --- Flavor picker logic ---
-const flavorSection = document.getElementById('flavor-section');
-const flavorGrid = document.getElementById('flavor-grid');
-const flavorNote = document.getElementById('flavor-limit-note');
-flavorGrid.innerHTML = '';
-flavorSection.style.display = 'none';
+  // === FLAVOR PICKER LOGIC ===
+  const flavorSection = document.getElementById('flavor-section');
+  const flavorGrid = document.getElementById('flavor-grid');
+  const flavorNote = document.getElementById('flavor-limit-note');
+  flavorGrid.innerHTML = '';
+  flavorSection.style.display = 'none';
 
-if (productName.includes('assorted cookies')) {
-  flavorSection.style.display = 'block';
+  if (productName.includes('assorted cookies')) {
+    flavorSection.style.display = 'block';
 
-  const flavors = [
-    { name: 'Red velvet cookie', img: 'images/cookies/six red velvet cookies.jpeg' },
-    { name: "S'mores cookie", img: "images/cookies/S'mores cookies.jpg" },
-    { name: 'Chocolate chip cookie', img: 'images/cookies/chocolate chip cookies.jpg' },
-    { name: 'Cookies n cream cookie', img: 'images/cookies/cookies n cream cookies.webp' },
-    { name: 'Cookie monster cookie', img: 'images/cookies/Cookie-Monster-Cookies.jpg' },
-    { name: 'Strawberry crunch cookie', img: 'images/cookies/Strawberry crunch cookies.webp' },
-    { name: 'Grinch cookie', img: 'images/cookies/Grinch cookies.jpg' } // optional: add image
-  ];
+    const flavors = [
+      { name: 'Red velvet cookie', img: 'images/cookies/six red velvet cookies.jpeg' },
+      { name: "S'mores cookie", img: "images/cookies/S'mores cookies.jpg" },
+      { name: 'Chocolate chip cookie', img: 'images/cookies/chocolate chip cookies.jpg' },
+      { name: 'Cookies n cream cookie', img: 'images/cookies/cookies n cream cookies.webp' },
+      { name: 'Cookie monster cookie', img: 'images/cookies/Cookie-Monster-Cookies.jpg' },
+      { name: 'Strawberry crunch cookie', img: 'images/cookies/Strawberry crunch cookies.webp' },
+      { name: 'Grinch cookie', img: 'images/cookies/Grinch cookies.jpg' }
+    ];
 
-  // Create clickable image cards
-  flavors.forEach(flavor => {
-    const div = document.createElement('div');
-    div.classList.add('flavor-option');
-    div.innerHTML = `
-      <img src="${flavor.img}" alt="${flavor.name}">
-      <span>${flavor.name}</span>
-    `;
-    div.addEventListener('click', () => {
-      div.classList.toggle('selected');
-      enforceFlavorLimit();
+    // Create clickable image cards
+    flavors.forEach(flavor => {
+      const div = document.createElement('div');
+      div.classList.add('flavor-option');
+      div.innerHTML = `
+        <img src="${flavor.img}" alt="${flavor.name}">
+        <span>${flavor.name}</span>
+      `;
+      div.addEventListener('click', () => {
+        div.classList.toggle('selected');
+        enforceFlavorLimit();
+      });
+      flavorGrid.appendChild(div);
     });
-    flavorGrid.appendChild(div);
-  });
 
-  enforceFlavorLimit();
+    function enforceFlavorLimit() {
+      const selected = flavorGrid.querySelectorAll('.selected');
+      const limit = parseInt(pmVariantEl.value, 10);
+      flavorNote.textContent = `You can select up to ${limit} flavors. (${selected.length}/${limit} chosen)`;
 
-  function enforceFlavorLimit() {
-    const selected = flavorGrid.querySelectorAll('.selected');
-    const limit = parseInt(pmVariantEl.value, 10);
-    flavorNote.textContent = `You can select up to ${limit} flavors. (${selected.length}/${limit} chosen)`;
-
-    if (selected.length > limit) {
-      selected[selected.length - 1].classList.remove('selected');
-      flavorNote.textContent = `You can select up to ${limit} flavors. Limit reached!`;
+      if (selected.length > limit) {
+        selected[selected.length - 1].classList.remove('selected');
+        flavorNote.textContent = `You can select up to ${limit} flavors. Limit reached!`;
+      }
     }
+
+    // Update the flavor limit note when quantity changes
+    pmVariantEl.addEventListener('change', enforceFlavorLimit);
+    enforceFlavorLimit();
   }
 
-  // Update the flavor limit note when quantity changes
-  pmVariantEl.addEventListener('change', enforceFlavorLimit);
-}
-  
-  // Update limit when quantity dropdown changes
-  pmVariantEl.addEventListener('change', enforceFlavorLimit);
-}  
+  // Finally, show modal
   pmEl.style.display = 'flex';
 }
 
@@ -324,6 +321,7 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
 
 
 
