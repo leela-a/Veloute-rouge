@@ -249,6 +249,7 @@ function openProductModal(fromCard) {
     // Update the flavor limit note when quantity changes
     pmVariantEl.addEventListener('change', enforceFlavorLimit);
     enforceFlavorLimit();
+  }
 
   // Finally, show modal
   pmEl.style.display = 'flex';
@@ -320,3 +321,4 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
+
