@@ -320,17 +320,3 @@ addToCart = function(name, price, qty = 1) {
   pmCloseBtn.addEventListener('click', closeProductModal);
   pmEl.addEventListener('click', (e) => { if (e.target === pmEl) closeProductModal(); });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
