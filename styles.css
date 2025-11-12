@@ -451,13 +451,14 @@ body { padding-top: 3.5rem; /* push content below fixed header */ }
 .dropdown.open .dropdown-menu { display: block; }
 
 .menu-title {
-  font-family: var(--font-body);  /* 'Playfair Display', serif */
+  font-family: /*var(--font-body);*/ 'Playfair Display', serif; /* 'Playfair Display', serif */
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
   margin-top: 5.5rem;   /* pushes it down from under the header */
   margin-bottom: 2rem;
   color: var(--primary-burgundy);
+  text-decoration: none;
 }
 
 
@@ -973,4 +974,5 @@ body {
   margin-top: 0;         /* remove top margin if any */
   padding-top: 0;        /* remove default top padding */
 }
+
 
