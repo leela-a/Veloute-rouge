@@ -964,3 +964,13 @@ body {
   color: #fff;
 }
 
+.order-info {
+  margin-bottom: 0.5rem; /* tighten space below */
+  padding-bottom: 0;     /* remove internal bottom padding */
+}
+
+.home-featured {
+  margin-top: 0;         /* remove top margin if any */
+  padding-top: 0;        /* remove default top padding */
+}
+
